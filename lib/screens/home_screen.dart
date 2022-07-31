@@ -1,5 +1,6 @@
 // import 'package:fl_components/models/menu_option.dart';
 import 'package:fl_components/router/app_routes.dart';
+import 'package:fl_components/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 // import 'listview1_screen.dart';
@@ -17,11 +18,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text ('Componentes en Flutter'),
-        elevation: 0,
+      
       ),
       body: ListView.separated(
         itemBuilder: (contex, i ) => ListTile(
-          leading: Icon( menuOptions[i].icon, color: Colors.pink, ),
+          leading: Icon( menuOptions[i].icon, color: AppTheme.primary ),
           title: Text (menuOptions[i].name ),
           onTap: () {
            
