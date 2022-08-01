@@ -16,7 +16,15 @@ class CardScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         children: const [
 
-          CustomCardType1()
+          CustomCardType1(),
+          SizedBox( height: 10 ),
+          CustomCardType2( name: ' Un hermoso Gatito', imageUrl: 'https://uvn-brightspot.s3.amazonaws.com/assets/vixes/imj/3/30-cosas-de-los-gatos-que-no-sabias-3.jpg',),
+          SizedBox( height: 20 ),
+          CustomCardType2( imageUrl: 'https://blogdeanimales.com/wp-content/uploads/mch/gato-persa-blanco_1977.jpg',),
+          SizedBox( height: 20 ),
+          CustomCardType2( imageUrl: 'https://estaticos.muyinteresante.es/uploads/images/gallery/59f0769f5cafe8965b3c9869/gato-himalayo-redes.jpg',),
+          SizedBox( height: 100 ),
+          
          
         ],
       )
