@@ -6,6 +6,7 @@ class AppTheme {
 
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     // Color primario
+    
     primaryColor: primary,
 
     // AppbBar Theme
@@ -17,9 +18,28 @@ class AppTheme {
     // textButtonTheme
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(primary: primary)
+    ),
+
+    // floatingActionButtons
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: primary,
+      elevation: 5
+    ),
+
+    // ElevateButtons
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+            primary: Colors.pink,
+            shape: const StadiumBorder(),
+            elevation: 0
+      ),
     )
+
   
   );
+
+
+
 
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
