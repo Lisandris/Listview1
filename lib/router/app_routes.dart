@@ -1,4 +1,5 @@
 import 'package:fl_components/models/models.dart';
+import 'package:fl_components/screens/listview_builder_screen.dart';
 import 'package:fl_components/screens/screens.dart';
 
 import '../screens/avatar_screen.dart';
@@ -18,6 +19,9 @@ class AppRoutes {
   MenuOptions(route: 'avatar', name: 'Circle Avatar', screen: const AvatarScreen(), icon: Icons.supervised_user_circle_outlined),
   MenuOptions(route: 'animated', name: 'Animated Container', screen: const AnimatedScreen(), icon: Icons.play_circle_outline_rounded),
   MenuOptions(route: 'inputs', name: 'Text Inputs', screen: const InputScreen(), icon: Icons.input_rounded),
+  MenuOptions(route: 'slider', name: 'Slider and Checks', screen: const SliderScreen(), icon: Icons.spa_outlined),
+  MenuOptions(route: 'ListviewBuilder', name: 'InfiniteScrol and Pull to refresh ', screen: const ListviewBuilderScreen(), icon: Icons.build_circle_outlined),
+  
 
 ];
 
