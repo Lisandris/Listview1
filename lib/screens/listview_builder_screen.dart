@@ -38,24 +38,39 @@ bool isLoading = false;
 
     await Future.delayed(const Duration( seconds: 3 ));
 
-    add10();
+    add5();
 
     isLoading = false;
     setState(() {});
+    
+    if ( scrollController.position.pixels + 100 <= scrollController.position.maxScrollExtent) return;
+
+    scrollController.animateTo(
+      scrollController.position.pixels + 120, 
+      duration: const Duration( milliseconds: 300), 
+      curve:Curves.fastOutSlowIn
+    );
 
   }
 
 
-
-
- void add10(){
-  final lastId = imagesIds.last;
-  imagesIds.addAll(
-    [1,2,3,4,5].map((e) => lastId + e)
-  );
-  setState(() {});
+  void add5() {
+    final lastId = imagesIds.last;
+    imagesIds.addAll(
+      [1,2,3,4,5].map((e) => lastId + e)
+    );
+    setState(() {});
  }
 
+ Future<void> onRefresh() async{
+  await Future.delayed(const Duration( seconds: 2 ));
+  final lastId = imagesIds.last;
+  imagesIds.clear();
+  imagesIds.add( lastId + 1);
+  add5();
+  
+
+ }
 
   @override
   Widget build(BuildContext context) {
@@ -70,28 +85,34 @@ bool isLoading = false;
         child: Stack(
           children: [
 
-            ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              controller: scrollController,
-              itemCount: imagesIds.length,
-              itemBuilder: ( BuildContext context, int index) {
-                return FadeInImage(
-                  width: double.infinity,
-                  height: 300,
-                  fit: BoxFit.cover,
-                  placeholder: const AssetImage('assets/jar-loading.gif'),
-                  image: NetworkImage('https://picsum.photos/500/300?image=${ imagesIds[index]}')
-                );
-              },
+            RefreshIndicator(
+              color: AppTheme.primary,
+              onRefresh: onRefresh,
+              child: ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                controller: scrollController,
+                itemCount: imagesIds.length,
+                itemBuilder: ( BuildContext context, int index) {
+                  return FadeInImage(
+                    width: double.infinity,
+                    height: 300,
+                    fit: BoxFit.cover,
+                    placeholder: const AssetImage('assets/jar-loading.gif'),
+                    image: NetworkImage('https://picsum.photos/500/300?image=${ imagesIds[index]}')
+                  );
+                },
+              ),
             ),
 
+
+
+            if ( isLoading )
             Positioned(
               bottom:40,
               left: size.width * 0.5 - 30,
-              child: const LoadingIcon()
+              child: const _LoadingIcon()
             )
-
-
+          
           ],
         ),
       ),
@@ -99,8 +120,8 @@ bool isLoading = false;
   }
 }
 
-class LoadingIcon extends StatelessWidget {
-  const LoadingIcon({
+class _LoadingIcon extends StatelessWidget {
+  const _LoadingIcon({
     Key? key,
   }) : super(key: key);
 
